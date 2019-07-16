@@ -35,4 +35,10 @@
         This project is developed for handling flooded data and generation the alert event
         which violate the alert rules.
     </description>
+
+    <modules>
+
+        <!-- Common test module -->
+        <module>pandora-test</module>
+    </modules>
 </project>
