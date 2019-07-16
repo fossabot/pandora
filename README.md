@@ -1,3 +1,3 @@
-# Pandora - A streaming alerting system [![CircleCI](https://circleci.com/gh/artistian/pandora.svg?style=svg)](https://circleci.com/gh/artistian/pandora)
+# Pandora - streaming alerting system [![CircleCI](https://circleci.com/gh/artistian/pandora.svg?style=svg)](https://circleci.com/gh/artistian/pandora)
 
 TODO Fulfill this read me.
