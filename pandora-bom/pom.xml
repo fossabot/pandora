@@ -423,8 +423,6 @@
                         <scmOnly>true</scmOnly>
                         <warn>true</warn>
                         <ignoreYear>false</ignoreYear>
-                        <useComma>true</useComma>
-                        <doHidden>true</doHidden>
                     </configuration>
                 </plugin>
                 <plugin>
