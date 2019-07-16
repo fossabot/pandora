@@ -556,6 +556,11 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
+                        <configuration>
+                            <configLocation>${top.parent.basedir}/tools/checkstyle.xml</configLocation>
+                            <suppressionsLocation>${top.parent.basedir}/tools/checkstyle-suppression.xml
+                            </suppressionsLocation>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>run-checkstyle</id>
@@ -563,11 +568,6 @@
                                     <goal>check</goal>
                                 </goals>
                                 <phase>validate</phase>
-                                <configuration>
-                                    <configLocation>${top.parent.basedir}/tools/checkstyle.xml</configLocation>
-                                    <suppressionsLocation>${top.parent.basedir}/tools/checkstyle-suppression.xml
-                                    </suppressionsLocation>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

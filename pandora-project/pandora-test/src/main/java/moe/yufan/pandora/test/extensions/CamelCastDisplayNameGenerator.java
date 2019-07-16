@@ -32,16 +32,16 @@ import static java.lang.Character.isUpperCase;
  */
 public class CamelCastDisplayNameGenerator implements DisplayNameGenerator {
 
-    private static final DisplayNameGenerator internal = new Standard();
+    private static final DisplayNameGenerator INTERNAL = new Standard();
 
     @Override
     public String generateDisplayNameForClass(Class<?> testClass) {
-        return internal.generateDisplayNameForClass(testClass);
+        return INTERNAL.generateDisplayNameForClass(testClass);
     }
 
     @Override
     public String generateDisplayNameForNestedClass(Class<?> nestedClass) {
-        return internal.generateDisplayNameForNestedClass(nestedClass);
+        return INTERNAL.generateDisplayNameForNestedClass(nestedClass);
     }
 
     @Override

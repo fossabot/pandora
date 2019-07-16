@@ -32,6 +32,8 @@ readonly RESULT_FILE=$(mktemp -t XXXcheckstyle-result)
 
 ${BASE_DIR}/mvnw checkstyle:checkstyle-aggregate \
     -f ${BASE_DIR}/pom.xml \
+    -Dcheckstyle.config.location=${BASE_DIR}/tools/checkstyle.xml \
+    -Dcheckstyle.suppressions.location=${BASE_DIR}/tools/checkstyle-suppression.xml \
     -Dcheckstyle.output.format=plain \
     -Dcheckstyle.output.file=${RESULT_FILE} > ${LOG_FILE} 2>&1 || (cat ${LOG_FILE} ; exit 1)
 

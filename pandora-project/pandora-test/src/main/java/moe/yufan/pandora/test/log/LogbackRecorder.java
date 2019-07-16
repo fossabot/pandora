@@ -46,28 +46,28 @@ public class LogbackRecorder {
     public static final String CAPTURE_EXCEPTION_MESSAGE = "Already capturing";
     public static final String RELEASE_EXCEPTION_MESSAGE = "Not currently capturing";
 
-    private static final LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
-    private static final Object lock = context.getConfigurationLock();
+    private static final LoggerContext CONTEXT = (LoggerContext) LoggerFactory.getILoggerFactory();
+    private static final Object LOCK = CONTEXT.getConfigurationLock();
 
-    private static final Map<Logger, LogbackRecorder> instances = new WeakHashMap<>(32, 0.75F);
+    private static final Map<Logger, LogbackRecorder> INSTANCES = new WeakHashMap<>(32, 0.75F);
 
     public static final LogbackRecorder forClass(Class<?> clazz) {
-        return forLogger(context.getLogger(clazz));
+        return forLogger(CONTEXT.getLogger(clazz));
     }
 
     public static final LogbackRecorder forName(String name) {
-        return forLogger(context.getLogger(name));
+        return forLogger(CONTEXT.getLogger(name));
     }
 
     public static final LogbackRecorder forLogger(org.slf4j.Logger logger) {
-        synchronized (instances) {
+        synchronized (INSTANCES) {
             if (!(logger instanceof Logger)) {
                 throw new IllegalArgumentException(LOGBACK_EXCEPTION_MESSAGE);
             }
-            LogbackRecorder recorder = instances.get(logger);
+            LogbackRecorder recorder = INSTANCES.get(logger);
             if (recorder == null) {
                 recorder = new LogbackRecorder((Logger) logger);
-                instances.put(recorder.logger, recorder);
+                INSTANCES.put(recorder.logger, recorder);
             }
             return recorder;
         }
@@ -97,7 +97,7 @@ public class LogbackRecorder {
     }
 
     public LogbackRecorder capture(String level) {
-        synchronized (lock) {
+        synchronized (LOCK) {
             if (this.active) {
                 throw new IllegalStateException(CAPTURE_EXCEPTION_MESSAGE);
             }
@@ -113,7 +113,7 @@ public class LogbackRecorder {
     }
 
     public synchronized LogbackRecorder release() {
-        synchronized (lock) {
+        synchronized (LOCK) {
             if (!this.active) {
                 throw new IllegalStateException(RELEASE_EXCEPTION_MESSAGE);
             }
