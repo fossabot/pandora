@@ -8,10 +8,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/mysql:5.6.44
 
     working_directory: ~/repo
@@ -33,5 +29,26 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      # run tests!
-      - run: ./mvnw integration-test
+      - run:
+          name: Check copyright
+          command: ./tools/scripts/copyright.sh
+
+      - run:
+          name: Code checkstyle
+          command: ./tools/scripts/copyright.sh
+
+      - run:
+          name: Build pandora
+          command: ./mvnw clean compile
+
+      - run:
+          name: Unit tests
+          command: ./mvnw test
+
+      - run:
+          name: Integration tests
+          command: ./mvnw integration-test
+
+      - run:
+          name: Sonar Analysis
+          command: ./mvnw verify -Pcoverage && ./tools/scripts/sonar-scanner.sh
