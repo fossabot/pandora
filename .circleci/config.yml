@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Code checkstyle
-          command: ./tools/scripts/copyright.sh
+          command: ./tools/scripts/checkstyle.sh
 
       - run:
           name: Build pandora
